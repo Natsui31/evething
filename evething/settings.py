@@ -106,7 +106,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'south',
     'mptt',
-    #'jingo',
+    'jingo',
     'thing',
 )
 
@@ -142,7 +142,7 @@ LOGGING = {
 LOGIN_REDIRECT_URL = '/'
 
 # email address that server mails appear to be from
-SERVER_EMAIL = 'evething@wafflemonster.org'
+SERVER_EMAIL = 'gwendoline.boirelle@gmail.com'
 
 # Auth profile thing
 AUTH_PROFILE_MODULE = 'thing.UserProfile'
