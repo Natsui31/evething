@@ -76,7 +76,7 @@ function program8(depth0,data) {
     + "</em>\n      <div class=\"progress";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.character)),stack1 == null || stack1 === false ? stack1 : stack1.skill_queue_low), {hash:{},inverse:self.noop,fn:self.program(13, program13, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\">\n        <div class=\"bar\" style=\"width: "
+  buffer += "\">\n        <div class=\"progress-bar\" style=\"width: "
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.character)),stack1 == null || stack1 === false ? stack1 : stack1.skill_queue)),stack1 == null || stack1 === false ? stack1 : stack1[0])),stack1 == null || stack1 === false ? stack1 : stack1.complete_percent)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "%\">"
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.character)),stack1 == null || stack1 === false ? stack1 : stack1.skill_queue)),stack1 == null || stack1 === false ? stack1 : stack1[0])),stack1 == null || stack1 === false ? stack1 : stack1.complete_percent)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
@@ -104,7 +104,7 @@ function program13(depth0,data) {
 function program15(depth0,data) {
   
   
-  return "<hr class=\"home-notifications hide\">";
+  return "<hr class=\"home-notifications\" />";
   }
 
   buffer += "  <div class=\"well-small well home-character\">\n    <div>\n      <span class=\"large\">\n        <a href=\"character/"
@@ -115,7 +115,9 @@ function program15(depth0,data) {
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.character)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</a>\n      </span>\n      <span class=\"small pull-right sensitive apikey-name\">["
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.character)),stack1 == null || stack1 === false ? stack1 : stack1.apikey)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "]</span>\n    </div>\n\n    <div>\n      <span>"
+    + "]</span>\n      "
+    + escapeExpression((helper = helpers.security || (depth0 && depth0.security),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = ((stack1 = (depth0 && depth0.character)),stack1 == null || stack1 === false ? stack1 : stack1.details)),stack1 == null || stack1 === false ? stack1 : stack1.security_status), options) : helperMissing.call(depth0, "security", ((stack1 = ((stack1 = (depth0 && depth0.character)),stack1 == null || stack1 === false ? stack1 : stack1.details)),stack1 == null || stack1 === false ? stack1 : stack1.security_status), options)))
+    + "\n    </div>\n\n    <div>\n      <span>"
     + escapeExpression((helper = helpers.comma || (depth0 && depth0.comma),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = ((stack1 = (depth0 && depth0.character)),stack1 == null || stack1 === false ? stack1 : stack1.details)),stack1 == null || stack1 === false ? stack1 : stack1.wallet_balance), options) : helperMissing.call(depth0, "comma", ((stack1 = ((stack1 = (depth0 && depth0.character)),stack1 == null || stack1 === false ? stack1 : stack1.details)),stack1 == null || stack1 === false ? stack1 : stack1.wallet_balance), options)))
     + " ISK</span>\n      <span class=\"small pull-right total-sp\">"
     + escapeExpression((helper = helpers.comma || (depth0 && depth0.comma),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = ((stack1 = (depth0 && depth0.character)),stack1 == null || stack1 === false ? stack1 : stack1.details)),stack1 == null || stack1 === false ? stack1 : stack1.total_sp), options) : helperMissing.call(depth0, "comma", ((stack1 = ((stack1 = (depth0 && depth0.character)),stack1 == null || stack1 === false ? stack1 : stack1.details)),stack1 == null || stack1 === false ? stack1 : stack1.total_sp), options)))
@@ -128,7 +130,7 @@ function program15(depth0,data) {
   buffer += "\n    ";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.profile)),stack1 == null || stack1 === false ? stack1 : stack1.HOME_SHOW_SEPARATORS), {hash:{},inverse:self.noop,fn:self.program(15, program15, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    <ul class=\"home-notifications\">\n        <li class=\"no-game-time hide\"><i class=\"fa fa-clock-o\" rel=\"tooltip\" title=\"Game time has expired!\"></i><span>Expired</span></li>\n        <li class=\"low-game-time hide\"><i class=\"fa fa-clock-o\" rel=\"tooltip\" title=\"Remaining game time is low!\"></i><span></span></li>\n        <li class=\"key-expiring hide\"><i class=\"fa fa-key\" rel=\"tooltip\" title=\"API key is close to expiring!\"></i></li>\n        <li class=\"empty-skill-queue hide\"><i class=\"fa fa-list-ol\" rel=\"tooltip\" title=\"Skill queue is empty!\"></i><span>Empty!</span></li>\n        <li class=\"low-skill-queue hide\"><i class=\"fa fa-list-ol\" rel=\"tooltip\" title=\"Skill queue is not full!\"></i><span></span></li>\n        <li class=\"implants hide\"><i class=\"fa fa-lightbulb-o\" rel=\"tooltip\" title=\"Missing stat implants for currently training skill!\"></i><span></span></li>\n        <li class=\"clone hide\"><i class=\"fa fa-user\" rel=\"tooltip\" title=\"Insufficient clone!\"></i><span></span></li>\n    </ul>\n  </div>\n";
+  buffer += "\n    <ul class=\"home-notifications\">\n        <li class=\"no-game-time\" style=\"display: none;\"><i class=\"fa fa-clock-o\" rel=\"tooltip\" title=\"Game time has expired!\"></i><span>Expired</span></li>\n        <li class=\"low-game-time\" style=\"display: none;\"><i class=\"fa fa-clock-o\" rel=\"tooltip\" title=\"Remaining game time is low!\"></i><span></span></li>\n        <li class=\"key-expiring\" style=\"display: none;\"><i class=\"fa fa-key\" rel=\"tooltip\" title=\"API key is close to expiring!\"></i></li>\n        <li class=\"empty-skill-queue\" style=\"display: none;\"><i class=\"fa fa-list-ol\" rel=\"tooltip\" title=\"Skill queue is empty!\"></i><span>Empty!</span></li>\n        <li class=\"low-skill-queue\" style=\"display: none;\"><i class=\"fa fa-list-ol\" rel=\"tooltip\" title=\"Skill queue is not full!\"></i><span></span></li>\n        <li class=\"implants\" style=\"display: none;\"><i class=\"fa fa-lightbulb-o\" rel=\"tooltip\" title=\"Missing stat implants for currently training skill!\"></i><span></span></li>\n        <li class=\"clone\" style=\"display: none;\"><i class=\"fa fa-user\" rel=\"tooltip\" title=\"Insufficient clone!\"></i><span></span></li>\n    </ul>\n  </div>\n";
   return buffer;
   });
 
