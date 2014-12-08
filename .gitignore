@@ -7,3 +7,4 @@ skill_map.pickle
 thing/profile_middleware.py
 .*.swp
 node_modules/
+celerybeat-schedule.*
