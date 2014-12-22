@@ -5,19 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ STATIC_URL }}favicon.ico">
-{% if authed %}
-{% if debug %}
-    <link rel="stylesheet/less" href="{{ STATIC_URL }}less/theme-{{ user.profile.theme }}/bootstrap.less">
-{% else %}
-    <link rel="stylesheet" href="{{ static('css/theme-' + user.profile.theme + '.min.css') }}">
-{% endif %}{# debug #}
-{% else %}
-{% if debug %}
-    <link rel="stylesheet/less" href="{{ STATIC_URL }}less/theme-default/bootstrap.less">
-{% else %}
-    <link rel="stylesheet" href="{{ static('css/theme-default.min.css') }}">
-{% endif %}
-{% endif %}{# authed #}
+	{% if authed %}
+		{% if debug %}
+			<link rel="stylesheet/less" href="{{ STATIC_URL }}less/theme-{{ user.profile.theme }}/bootstrap.less">
+		{% else %}
+			<link rel="stylesheet" href="{{ static('css/theme-' + user.profile.theme + '.min.css') }}">
+		{% endif %}{# debug #}
+	{% else %}
+		{% if debug %}
+			<link rel="stylesheet/less" href="{{ STATIC_URL }}less/theme-default/bootstrap.less">
+		{% else %}
+			<link rel="stylesheet" href="{{ static('css/theme-default.min.css') }}">
+		{% endif %}
+	{% endif %}{# authed #}
     <title>EVEthing: {% block title %}{% endblock %}</title>
   </head>
 
@@ -36,44 +36,34 @@
           </div>
           <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav" id="nav-list">
-{% if authed %}{% set profile = user.profile %}
-              {% if profile.show_assets %}<li><a href="{{ url('thing.views.assets_summary') }}">Assets</a></li>{% endif %}
-              {# {% if profile.show_blueprints %}<li><a href="{{ url('thing.views.blueprints') }}">Blueprints</a></li>{% endif %} #}
-{% if profile.show_contracts %}
-              <li>
-                <a href="{{ url('thing.views.contracts') }}">
-                  Contracts
-                  {% if nav_contracts %}<span class="text-success">[{{ nav_contracts }}]</span>{% endif %}
-                </a>
-              </li>
-{% endif %}{# profile.show_contracts #}
-{% if profile.show_industry %}
-              <li>
-                <a href="{{ url('thing.views.industry') }}">
-                  Industry
-                  {% if nav_industryjobs %}<span class="text-success">[{{ nav_industryjobs }}]</span>{% endif %}
-                </a>
-              </li>
-{% endif %}{# profile.show_industry #}
-              {% if profile.show_orders %}<li><a href="{{ url('thing.views.orders') }}">Orders</a></li>{% endif %}
-              {% if profile.show_trade %}<li><a href="{{ url('thing.views.trade') }}">Trade</a></li>{% endif %}
-              {% if profile.show_transactions %}<li><a href="{{ url('thing.views.transactions') }}">Transactions</a></li>{% endif %}
-              {% if profile.show_wallet_journal %}<li><a href="{{ url('thing.views.wallet_journal') }}">Wallet Journal</a></li>{% endif %}
-              {% if profile.show_pi %}<li><a href="{{ url('thing.views.pi') }}">PI</a></li>{% endif %}
-{% endif %}{# authed #}
+			{% if authed %}{% set profile = user.profile %}
+				{% if profile.show_assets %}<li><a href="{{ url('thing.views.assets_summary') }}">Assets</a></li>{% endif %}
+				{# {% if profile.show_blueprints %}<li><a href="{{ url('thing.views.blueprints') }}">Blueprints</a></li>{% endif %} #}
+				{% if profile.show_contracts %}
+					<li><a href="{{ url('thing.views.contracts') }}">Contracts{% if nav_contracts %}<span class="text-success">[{{ nav_contracts }}]</span>{% endif %}</a></li>
+				{% endif %}{# profile.show_contracts #}
+				{% if profile.show_industry %}
+					<li><a href="{{ url('thing.views.industry') }}">Industry{% if nav_industryjobs %}<span class="text-success">[{{ nav_industryjobs }}]</span>{% endif %}</a></li>
+				{% endif %}{# profile.show_industry #}
+				{% if profile.show_orders %}<li><a href="{{ url('thing.views.orders') }}">Orders</a></li>{% endif %}
+				{% if profile.show_trade %}<li><a href="{{ url('thing.views.trade') }}">Trade</a></li>{% endif %}
+				{% if profile.show_transactions %}<li><a href="{{ url('thing.views.transactions') }}">Transactions</a></li>{% endif %}
+				{% if profile.show_wallet_journal %}<li><a href="{{ url('thing.views.wallet_journal') }}">Wallet Journal</a></li>{% endif %}
+				{% if profile.show_pi %}<li><a href="{{ url('thing.views.pi') }}">PI</a></li>{% endif %}
+			{% endif %}{# authed #}
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-{% if authed %}
+			{% if authed %}
               <li class="navbar-mail">
                 <a href="{{ url('thing.views.mail') }}"><span class="fa fa-envelope"></span> {{ nav_mail }}</a>
               </li>
               <p class="navbar-text visible-desktop navbar-server-status">
-{% if server_open %}
+              {% if server_open %}
                 <span class="fa fa-thumbs-up" rel="tooltip" data-placement="bottom" title="Server is online - {{ online_players|commas }} players"></span>
-{% else %}
+              {% else %}
                 <span class="fa fa-thumbs-down" rel="tooltip" data-placement="bottom" title="Server is offline"></span>
-{% endif %}{# server_open #}
+              {% endif %}{# server_open #}
               </p>
               <p class="navbar-text visible-desktop"{% if not user.profile.show_clock %} style="display: none"{% endif %}>
                 <span id="utc-time"></span> EVE
@@ -89,30 +79,30 @@
                   <li><a href="{{ url('thing.views.events') }}">Event log</a></li>
                   <li><a href="{{ url('thing.views.mail') }}">Mail</a></li>
                   <li class="divider"></li>
-{% if user.is_staff %}
-                  <li><a href="{{ url('admin:index') }}">Site Administration</a></li>
-                  <li class="divider"></li>
-{% endif %}{# user.is_staff #}
+                  {% if user.is_staff %}
+                  	<li><a href="{{ url('admin:index') }}">Site Administration</a></li>
+				  	<li class="divider"></li>
+				  {% endif %}{# user.is_staff #}
                   <li><a href="{{ url('auth_logout') }}">Logout</a>
                 </ul>
               </li>
-{% else %}
+			{% else %}
               <p class="navbar-text">
                 <a href="{{ url('auth_login') }}">Login</a>
               </p>
-{% if user|can_register %}
-              <p class="navbar-text">
-                <a href="{{ url('thing.views.account_register') }}">Register</a>
-              </p>
-{% endif %}
-{% endif %}{# authed #}
+			  {% if user|can_register %}
+              	<p class="navbar-text">
+                	<a href="{{ url('thing.views.account_register') }}">Register</a>
+				</p>
+			  {% endif %}
+			{% endif %}{# authed #}
             </ul>
           </div>
         </div>
       </div>
 
       <div class="container-fluid" id="container">
-{% block content %}{% endblock %}
+      {% block content %}{% endblock %}
       </div>
 
       <div id="push"></div>
@@ -130,32 +120,32 @@
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-{% if debug %}
-    <script src="{{ STATIC_URL}}js/less.min.js"></script>
-    <script src="{{ STATIC_URL}}js/jquery.tablesorter.js"></script>
-    <script src="{{ STATIC_URL}}js/jquery.tablesorter.widgets.js"></script>
-    <script src="{{ STATIC_URL}}js/jquery.cookie.js"></script>
-    <script src="{{ STATIC_URL}}js/handlebars.js"></script>
-    <script src="{{ STATIC_URL}}js/bootstrap.js"></script>
-    <script src="{{ STATIC_URL}}js/bootstrap-datepicker.js"></script>
-    <script src="{{ STATIC_URL}}js/requestAnimationFrame.polyfill.js"></script>
-    <script src="{{ STATIC_URL}}js/evething.js"></script>
-    <script src="{{ STATIC_URL}}js/evething/account.js"></script>
-    <script src="{{ STATIC_URL}}js/evething/assets.js"></script>
-    <script src="{{ STATIC_URL}}js/evething/blueprints.js"></script>
-    <script src="{{ STATIC_URL}}js/evething/bpcalc.js"></script>
-    <script src="{{ STATIC_URL}}js/evething/character.js"></script>
-    <script src="{{ STATIC_URL}}js/evething/filters.js"></script>
-    <script src="{{ STATIC_URL}}js/evething/home.js"></script>
-    <script src="{{ STATIC_URL}}js/evething/industry.js"></script>
-    <script src="{{ STATIC_URL}}js/evething/mail.js"></script>
-    <script src="{{ STATIC_URL}}js/evething/orders.js"></script>
-    <script src="{{ STATIC_URL}}js/evething/transactions.js"></script>
-    <script src="{{ STATIC_URL}}js/evething/wallet_journal.js"></script>
-    <script src="{{ STATIC_URL}}js/evething/pi.js"></script>
-{% else %}
-    <script src="{{ static('js/evething-combined.min.js') }}"></script>
-{% endif %}{# if debug #}
-{% block extra_js %}{% endblock %}
+	{% if debug %}
+	    <script src="{{ STATIC_URL}}js/less.min.js"></script>
+	    <script src="{{ STATIC_URL}}js/jquery.tablesorter.js"></script>
+	    <script src="{{ STATIC_URL}}js/jquery.tablesorter.widgets.js"></script>
+	    <script src="{{ STATIC_URL}}js/jquery.cookie.js"></script>
+	    <script src="{{ STATIC_URL}}js/handlebars.js"></script>
+	    <script src="{{ STATIC_URL}}js/bootstrap.js"></script>
+	    <script src="{{ STATIC_URL}}js/bootstrap-datepicker.js"></script>
+	    <script src="{{ STATIC_URL}}js/requestAnimationFrame.polyfill.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething/account.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething/assets.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething/blueprints.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething/bpcalc.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething/character.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething/filters.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething/home.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething/industry.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething/mail.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething/orders.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething/transactions.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething/wallet_journal.js"></script>
+	    <script src="{{ STATIC_URL}}js/evething/pi.js"></script>
+	{% else %}
+    	<script src="{{ static('js/evething-combined.min.js') }}"></script>
+	{% endif %}{# if debug #}
+	{% block extra_js %}{% endblock %}
   </body>
 </html>

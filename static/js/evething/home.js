@@ -1067,14 +1067,6 @@ EVEthing.home.CharacterDisplay.prototype.animate = function(now) {
         }
     }
 
-    if (this.character.details.clone_skill_points < total_sp) {
-        notifications = true;
-        this.well.find('.home-notifications .clone').show();
-        this.well.find('.home-notifications .clone span').text(Handlebars.helpers.comma(this.character.details.clone_skill_points));
-    } else {
-        this.well.find('.home-notifications .clone').hide();
-    }
-
     if (this.character.apikey.expires) {
         if ((this.character.apikey.expires - now) < EVEthing.home.EXPIRE_WARNING) {
             this.well.find('.home-notifications .key-expiring').show();

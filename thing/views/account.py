@@ -216,7 +216,9 @@ def account_characters(request):
         char.config.home_group = request.POST.get('group_' + str(char.id), '')
 
         char.config.save()
-
+        
+    request.session['message_type'] = 'success'
+    request.session['message'] = 'Settings changed successfully.'
 
     return redirect('%s#characters' % (reverse(account)))
 
