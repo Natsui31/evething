@@ -83,7 +83,9 @@
                   	<li><a href="{{ url('admin:index') }}">Site Administration</a></li>
 				  	<li class="divider"></li>
 				  {% endif %}{# user.is_staff #}
-                  <li><a href="{{ url('auth_logout') }}">Logout</a>
+                  <li><a href="{{ url('auth_logout') }}">Logout</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{{ url('thing.views.faq') }}">FAQ</a></li>
                 </ul>
               </li>
 			{% else %}
@@ -92,9 +94,12 @@
               </p>
 			  {% if user|can_register %}
               	<p class="navbar-text">
-                	<a href="{{ url('thing.views.account_register') }}">Register</a>
+              		<a href="{{ url('thing.views.account_register') }}">Register</a>
 				</p>
 			  {% endif %}
+			  <p class="navbar-text">
+			  	<a href="{{ url('thing.views.faq') }}">FAQ</a>
+			  </p>
 			{% endif %}{# authed #}
             </ul>
           </div>
@@ -111,7 +116,7 @@
     <div id="footer">
       <div class="container-fluid">
         <p class="pull-left">
-          <a href="https://github.com/Natsui31/evething/tree/develop#readme">EVEthing</a> &copy; Freddie &amp; Gillingham 2010-2014
+          <a href="https://github.com/Natsui31/evething#readme">EVEthing</a> &copy; Freddie &amp; Gillingham 2010-2014
         </p>
         <p class="pull-right">
           <strong>Queued tasks:</strong> {{ task_count|default(0) }}

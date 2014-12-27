@@ -2,7 +2,7 @@ from django.contrib import admin
 from thing.models import APIKey, BlueprintInstance, Campaign, Character, CharacterConfig, Corporation, \
     Alliance, APIKeyFailure, Asset, AssetSummary, BlueprintComponent, Blueprint, CorpWallet, \
     TaskState, CharacterDetails, Contract, UserProfile, Transaction, JournalEntry, Colony, Pin, BlueprintProduct, \
-    IndustryJob
+    IndustryJob, Faq
 
 
 class APIKeyAdmin(admin.ModelAdmin):
@@ -111,6 +111,9 @@ class IndustryJobAdmin(admin.ModelAdmin):
     list_display = ('character', 'activity', 'blueprint', 'product', 'status')
     list_filter = ('activity', 'status')
     raw_id_fields = ('character', 'corporation')
+    
+class FaqAdmin(admin.ModelAdmin):
+    list_display = ('id', 'question', 'answer')
 
 admin.site.register(APIKey, APIKeyAdmin)
 admin.site.register(Character, CharacterAdmin)
@@ -135,3 +138,4 @@ admin.site.register(JournalEntry, JournalEntryAdmin)
 admin.site.register(Colony, ColonyAdmin)
 admin.site.register(Pin, PinAdmin)
 admin.site.register(IndustryJob, IndustryJobAdmin)
+admin.site.register(Faq, FaqAdmin)

@@ -1,5 +1,8 @@
 # flake8: noqa
 
+# Faq
+from thing.models.faq import Faq
+
 # Locations
 from thing.models.region import Region
 from thing.models.constellation import Constellation

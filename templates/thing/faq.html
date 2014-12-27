@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}FAQ{% endblock %}
+
+{% block content %}
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>FAQ</h2>
+        </div>
+      </div>
+      <div class="panel-group" id="accordion">
+      	{% for faq in faqs %}
+        <div class="panel panel-default">
+        	<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#{{ faq.id }}">{{ faq.question }}</a>
+				</h4>
+			</div>
+			<div id="{{ faq.id }}" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p>{{ faq.answer }}</p>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+      </div>
+{% endblock %}

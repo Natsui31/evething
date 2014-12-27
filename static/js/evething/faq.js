@@ -1,0 +1,3 @@
+EVEthing.pi = {
+    onload: function () {}
+    };
