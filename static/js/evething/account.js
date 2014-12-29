@@ -14,6 +14,7 @@ EVEthing.account = {
         524288: 'Standings',
         2097152: 'WalletJournal',
         4194304: 'WalletTransactions',
+        16777216: 'CharacterInfo',
         33554432: 'AccountStatus',
         67108864: 'Contracts',
         134217728: 'Locations'
