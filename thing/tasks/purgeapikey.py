@@ -54,11 +54,12 @@ def purge_api_key(apikey_id):
             # Only 1 key references this character, exterminate
             if char.key_count == 1:
                 text = "All data for character '%s' has been purged" % (char.name)
-
+                
                 cursor = connections['default'].cursor()
-
-                cursor.execute('DELETE FROM thing_characterconfig WHERE character_id = %s', [char.id])
+                
+                cursor.execute('DELETE FROM thing_characterdetails_implants WHERE characterdetails_id = %s', [char.id])
                 cursor.execute('DELETE FROM thing_characterdetails WHERE character_id = %s', [char.id])
+                
                 cursor.execute('DELETE FROM thing_characterskill WHERE character_id = %s', [char.id])
                 cursor.execute('DELETE FROM thing_corporationstanding WHERE character_id = %s', [char.id])
                 cursor.execute('DELETE FROM thing_factionstanding WHERE character_id = %s', [char.id])
@@ -67,10 +68,11 @@ def purge_api_key(apikey_id):
                 cursor.execute('DELETE FROM thing_asset WHERE character_id = %s AND corporation_id IS NULL', [char.id])
                 cursor.execute('DELETE FROM thing_contract WHERE character_id = %s AND corporation_id IS NULL', [char.id])
                 cursor.execute('DELETE FROM thing_industryjob WHERE character_id = %s AND corporation_id IS NULL', [char.id])
-
                 cursor.execute('DELETE FROM thing_journalentry WHERE character_id = %s AND corp_wallet_id IS NULL', [char.id])
                 cursor.execute('DELETE FROM thing_marketorder WHERE character_id = %s AND corp_wallet_id IS NULL', [char.id])
                 cursor.execute('DELETE FROM thing_transaction WHERE character_id = %s AND corp_wallet_id IS NULL', [char.id])
+                
+                cursor.execute('DELETE FROM thing_characterconfig WHERE character_id = %s', [char.id])
 
                 cursor.close()
 
