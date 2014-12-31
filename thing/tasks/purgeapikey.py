@@ -65,7 +65,7 @@ def purge_api_key(apikey_id):
                 cursor.execute('DELETE FROM thing_factionstanding WHERE character_id = %s', [char.id])
                 cursor.execute('DELETE FROM thing_skillqueue WHERE character_id = %s', [char.id])
 
-                cursor.execute('DELETE FROM thing_asset WHERE character_id = %s AND corporation_id IS NULL', [char.id])
+                cursor.execute('DELETE FROM thing_asset WHERE character_id = %s AND corporation_id = 0', [char.id])
                 cursor.execute('DELETE FROM thing_contract WHERE character_id = %s AND corporation_id IS NULL', [char.id])
                 cursor.execute('DELETE FROM thing_industryjob WHERE character_id = %s AND corporation_id IS NULL', [char.id])
                 cursor.execute('DELETE FROM thing_journalentry WHERE character_id = %s AND corp_wallet_id IS NULL', [char.id])
