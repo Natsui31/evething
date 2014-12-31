@@ -6,6 +6,8 @@
   -- Some sort of exciting exploration of features I guess!
 
 * features:
+  - Register:
+    = Make possible user registration with some corporation_id & check each cycle it is always in the same corporation
   - Industry jobs:
     = Events for job installation/completion/etc
     = Some sort of success rate tracker for invention?
@@ -92,5 +94,4 @@
   - Summary table similar to orders
 
 * views.home:
-  - Add options to hide corp wallet/event log sections
-  - Add options to ignore specific notifications for specific characters.
+  - Add options to hide corp wallet/event log sectionsq
